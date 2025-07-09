@@ -1,0 +1,779 @@
+/*
+  Dilarang keras menggandakan/mengcopy/menyebarkan/membajak/mendecompile 
+  Software ini dalam bentuk apapun tanpa seijin pembuat software
+  (Khanza.Soft Media). Bagi yang sengaja membajak softaware ini ta
+  npa ijin, kami sumpahi sial 1000 turunan, miskin sampai 500 turu
+  nan. Selalu mendapat kecelakaan sampai 400 turunan. Anak pertama
+  nya cacat tidak punya kaki sampai 300 turunan. Susah cari jodoh
+  sampai umur 50 tahun sampai 200 turunan. Ya Alloh maafkan kami 
+  karena telah berdoa buruk, semua ini kami lakukan karena kami ti
+  dak pernah rela karya kami dibajak tanpa ijin.
+ */
+package wa;
+
+import bridging.koneksiDBWa;
+import fungsi.koneksiDB;
+import fungsi.sekuel;
+import fungsi.validasi;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.util.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fungsi.akses;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.FileInputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Properties;
+import javax.swing.JOptionPane;
+import wa.WhatsappMasterTemplate;
+import wa.WhatsappTemplate;
+
+/**
+ *
+ * @author perpustakaan
+ */
+public class WhatsappKirimFonnte extends javax.swing.JDialog {
+
+    private Connection koneksi = koneksiDB.condb();
+    private Connection koneksiwa;
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private PreparedStatement ps;
+    private ResultSet rs;
+    private WhatsappTemplate templateWA = new WhatsappTemplate(null, false);
+    private String WAGATEWAY = "";
+
+    private WhatsappTemplate pasien = new WhatsappTemplate(null, false);
+
+//    private WhatsappMasterTemplate whatsapptemp=new WhatsappMasterTemplate(null,false);
+    private WhatsappRiwayat whastappriwayat = new WhatsappRiwayat(null, false);
+    private Properties prop = new Properties();
+
+    /**
+     * Creates new form DlgPemberianObat
+     *
+     * @param parent
+     * @param modal
+     */
+    public WhatsappKirimFonnte(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+
+        this.setLocation(8, 1);
+        setSize(885, 674);
+
+        //TCatatan.setText(TCatatan); 
+//        TPesan.setLineWrap(true);
+//        TPesan.setWrapStyleWord(true); 
+        WhatsappTemplate template = new WhatsappTemplate(null, false);
+        template.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                TPoli.setText("Window Opened");
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                TPoli.setText("Window Closing");
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                TPoli.setText("Window Closed");
+            }
+        });
+
+        templateWA.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {;
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                //    if(akses.getform().equals("WhatsappKirimFonnte")){
+                if (templateWA.getTable().getSelectedRow() != -1) {
+                    TPesan.setText(templateWA.getTable().getValueAt(templateWA.getTable().getSelectedRow(), 2).toString());
+
+                    //    }
+                }
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            WAGATEWAY = prop.getProperty("WAGATEWAY");
+        } catch (Exception ex) {
+            WAGATEWAY = "";
+
+        }
+
+    }
+
+    //private DlgCariObatPenyakit dlgobtpny=new DlgCariObatPenyakit(null,false);
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        internalFrame1 = new widget.InternalFrame();
+        FormInput = new widget.PanelBiasa();
+        Scroll3 = new widget.ScrollPane();
+        TPesan = new widget.TextArea();
+        BtnTemplate = new widget.Button();
+        BtnKirim = new widget.Button();
+        BtnKeluar = new widget.Button();
+        BtnTemplate1 = new widget.Button();
+        NoHp = new javax.swing.JTextField();
+        TDokter = new javax.swing.JTextField();
+        TPasien = new javax.swing.JTextField();
+        TNoRM = new javax.swing.JTextField();
+        NoReg = new javax.swing.JTextField();
+        TPoli = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        DTPReg = new widget.Tanggal();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        label11 = new widget.Label();
+        TglAsuhan = new widget.Tanggal();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+
+        internalFrame1.setBackground(new java.awt.Color(51, 51, 255));
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(":: Kirim Whatsapp ::"));
+        internalFrame1.setForeground(new java.awt.Color(153, 153, 255));
+        internalFrame1.setMaximumSize(new java.awt.Dimension(2147, 2147));
+        internalFrame1.setName("internalFrame1"); // NOI18N
+        internalFrame1.setLayout(new java.awt.BorderLayout());
+
+        FormInput.setMinimumSize(new java.awt.Dimension(800, 600));
+        FormInput.setName("FormInput"); // NOI18N
+        FormInput.setPreferredSize(new java.awt.Dimension(800, 600));
+        FormInput.setWarnaAtas(java.awt.SystemColor.activeCaption);
+        FormInput.setLayout(null);
+
+        Scroll3.setMaximumSize(new java.awt.Dimension(3276, 3276));
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+
+        TPesan.setColumns(20);
+        TPesan.setRows(5);
+        TPesan.setName("TPesan"); // NOI18N
+        TPesan.setPreferredSize(new java.awt.Dimension(190, 40));
+        Scroll3.setViewportView(TPesan);
+
+        FormInput.add(Scroll3);
+        Scroll3.setBounds(20, 50, 640, 160);
+
+        BtnTemplate.setBackground(new java.awt.Color(204, 0, 51));
+        BtnTemplate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/template.png"))); // NOI18N
+        BtnTemplate.setMnemonic('G');
+        BtnTemplate.setText("Template");
+        BtnTemplate.setToolTipText("");
+        BtnTemplate.setGlassColor(java.awt.SystemColor.activeCaption);
+        BtnTemplate.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        BtnTemplate.setName("BtnTemplate"); // NOI18N
+        BtnTemplate.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnTemplate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTemplateActionPerformed(evt);
+            }
+        });
+        BtnTemplate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnTemplateKeyPressed(evt);
+            }
+        });
+        FormInput.add(BtnTemplate);
+        BtnTemplate.setBounds(20, 220, 110, 30);
+
+        BtnKirim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/wa.png"))); // NOI18N
+        BtnKirim.setMnemonic('T');
+        BtnKirim.setText("Kirim");
+        BtnKirim.setToolTipText("Alt+T");
+        BtnKirim.setGlassColor(java.awt.SystemColor.activeCaption);
+        BtnKirim.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        BtnKirim.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        BtnKirim.setName("BtnKirim"); // NOI18N
+        BtnKirim.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKirim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKirimActionPerformed(evt);
+            }
+        });
+        BtnKirim.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnKirimKeyPressed(evt);
+            }
+        });
+        FormInput.add(BtnKirim);
+        BtnKirim.setBounds(290, 220, 90, 30);
+
+        BtnKeluar.setBorder(null);
+        BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/x.png"))); // NOI18N
+        BtnKeluar.setMnemonic('T');
+        BtnKeluar.setToolTipText("Alt+T");
+        BtnKeluar.setGlassColor(new java.awt.Color(51, 102, 255));
+        BtnKeluar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        BtnKeluar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        BtnKeluar.setName("BtnKeluar"); // NOI18N
+        BtnKeluar.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKeluar.setRoundRect(false);
+        BtnKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKeluarActionPerformed(evt);
+            }
+        });
+        BtnKeluar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnKeluarKeyPressed(evt);
+            }
+        });
+        FormInput.add(BtnKeluar);
+        BtnKeluar.setBounds(670, 60, 30, 30);
+
+        BtnTemplate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/chat2.png"))); // NOI18N
+        BtnTemplate1.setMnemonic('G');
+        BtnTemplate1.setText("Riwayat Chat");
+        BtnTemplate1.setToolTipText("");
+        BtnTemplate1.setGlassColor(java.awt.SystemColor.activeCaption);
+        BtnTemplate1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        BtnTemplate1.setName("BtnTemplate1"); // NOI18N
+        BtnTemplate1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnTemplate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTemplate1ActionPerformed(evt);
+            }
+        });
+        BtnTemplate1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnTemplate1KeyPressed(evt);
+            }
+        });
+        FormInput.add(BtnTemplate1);
+        BtnTemplate1.setBounds(140, 220, 140, 30);
+
+        NoHp.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        NoHp.setBorder(null);
+        NoHp.setName("NoHp"); // NOI18N
+        FormInput.add(NoHp);
+        NoHp.setBounds(530, 10, 170, 14);
+
+        TDokter.setEditable(false);
+        TDokter.setBackground(new java.awt.Color(255, 255, 255));
+        TDokter.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TDokter.setBorder(null);
+        TDokter.setName("TDokter"); // NOI18N
+        FormInput.add(TDokter);
+        TDokter.setBounds(280, 30, 180, 14);
+
+        TPasien.setEditable(false);
+        TPasien.setBackground(new java.awt.Color(255, 255, 255));
+        TPasien.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TPasien.setBorder(null);
+        TPasien.setName("TPasien"); // NOI18N
+        FormInput.add(TPasien);
+        TPasien.setBounds(280, 10, 180, 14);
+
+        TNoRM.setEditable(false);
+        TNoRM.setBackground(new java.awt.Color(255, 255, 255));
+        TNoRM.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TNoRM.setBorder(null);
+        TNoRM.setName("TNoRM"); // NOI18N
+        FormInput.add(TNoRM);
+        TNoRM.setBounds(90, 10, 100, 14);
+
+        NoReg.setEditable(false);
+        NoReg.setBackground(new java.awt.Color(255, 255, 255));
+        NoReg.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        NoReg.setBorder(null);
+        NoReg.setName("NoReg"); // NOI18N
+        FormInput.add(NoReg);
+        NoReg.setBounds(91, 30, 100, 14);
+
+        TPoli.setEditable(false);
+        TPoli.setBackground(new java.awt.Color(255, 255, 255));
+        TPoli.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TPoli.setBorder(null);
+        TPoli.setName("TPoli"); // NOI18N
+        FormInput.add(TPoli);
+        TPoli.setBounds(530, 30, 170, 14);
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(123, 36, 28));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Poli :  ");
+        jLabel1.setName("jLabel1"); // NOI18N
+        FormInput.add(jLabel1);
+        jLabel1.setBounds(470, 30, 60, 14);
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(123, 36, 28));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Antrian :  ");
+        jLabel2.setName("jLabel2"); // NOI18N
+        FormInput.add(jLabel2);
+        jLabel2.setBounds(20, 30, 70, 14);
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Ubah Tanggal Kontrol :");
+        jLabel3.setName("jLabel3"); // NOI18N
+        FormInput.add(jLabel3);
+        jLabel3.setBounds(400, 220, 150, 30);
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(123, 36, 28));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("No RM :  ");
+        jLabel4.setName("jLabel4"); // NOI18N
+        FormInput.add(jLabel4);
+        jLabel4.setBounds(20, 10, 70, 14);
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(123, 36, 28));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText("No WA :  ");
+        jLabel7.setName("jLabel7"); // NOI18N
+        FormInput.add(jLabel7);
+        jLabel7.setBounds(450, 10, 80, 14);
+
+        DTPReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2025" }));
+        DTPReg.setDisplayFormat("dd-MM-yyyy");
+        DTPReg.setName("DTPReg"); // NOI18N
+        DTPReg.setOpaque(false);
+        DTPReg.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                DTPRegItemStateChanged(evt);
+            }
+        });
+        DTPReg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DTPRegKeyPressed(evt);
+            }
+        });
+        FormInput.add(DTPReg);
+        DTPReg.setBounds(560, 220, 130, 23);
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(123, 36, 28));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Nama :  ");
+        jLabel6.setName("jLabel6"); // NOI18N
+        FormInput.add(jLabel6);
+        jLabel6.setBounds(200, 10, 70, 14);
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(123, 36, 28));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Dokter :  ");
+        jLabel5.setName("jLabel5"); // NOI18N
+        FormInput.add(jLabel5);
+        jLabel5.setBounds(190, 30, 80, 14);
+
+        label11.setText("Tanggal dan Jam Kirim:");
+        label11.setName("label11"); // NOI18N
+        label11.setPreferredSize(new java.awt.Dimension(70, 23));
+        FormInput.add(label11);
+        label11.setBounds(430, 250, 120, 23);
+
+        TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2025 12:53:38" }));
+        TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
+        TglAsuhan.setName("TglAsuhan"); // NOI18N
+        TglAsuhan.setOpaque(false);
+        TglAsuhan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TglAsuhanKeyPressed(evt);
+            }
+        });
+        FormInput.add(TglAsuhan);
+        TglAsuhan.setBounds(560, 250, 130, 23);
+
+        internalFrame1.add(FormInput, java.awt.BorderLayout.CENTER);
+        FormInput.getAccessibleContext().setAccessibleName("");
+        FormInput.getAccessibleContext().setAccessibleDescription("");
+
+        getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
+        internalFrame1.getAccessibleContext().setAccessibleDescription("::[ Kirim Pesan Whatsapp ]::");
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
+        dispose();
+}//GEN-LAST:event_BtnKeluarActionPerformed
+
+    private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            dispose();
+        }
+}//GEN-LAST:event_BtnKeluarKeyPressed
+
+private void BtnTemplateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTemplateActionPerformed
+
+    try {
+        //  WhatsappTemplate whatsappTemplate = new WhatsappTemplate(null, false);
+        // whatsappTemplate.setNoRawat(TNoRM.getText());
+        templateWA.tampil();
+        templateWA.setSize(internalFrame1.getWidth() - 50, internalFrame1.getHeight() - 50);
+        templateWA.setLocationRelativeTo(internalFrame1);
+        templateWA.setVisible(true);
+    } catch (Exception e) {
+        // Handle exception (jika ada)
+        e.printStackTrace(); // Gantilah ini dengan penanganan yang sesuai
+    }
+
+}//GEN-LAST:event_BtnTemplateActionPerformed
+
+private void BtnTemplateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnTemplateKeyPressed
+    if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+
+    }
+}//GEN-LAST:event_BtnTemplateKeyPressed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        TPesan.requestFocus();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void BtnKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimActionPerformed
+        if (WAGATEWAY.equals("maskofa")) {
+            KirimWaDelphi();
+        } else if (WAGATEWAY.equals("fonnte")) {
+            KirimWaFonnte();
+        } else {
+            JOptionPane.showMessageDialog(null, "Tidak ada WA GATEWAY !!", "Cek Database.xml", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnKirimActionPerformed
+
+    private void BtnKirimKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKirimKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnKirimKeyPressed
+
+    private void BtnTemplate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTemplate1ActionPerformed
+        // TODO add your handling code here:
+
+        whastappriwayat.setNoRawat(TNoRM.getText());
+        whastappriwayat.tampil();
+        whastappriwayat.setSize(internalFrame1.getWidth() - 30, internalFrame1.getHeight() - 30);
+        whastappriwayat.setLocationRelativeTo(internalFrame1);
+        whastappriwayat.setVisible(true);
+    }//GEN-LAST:event_BtnTemplate1ActionPerformed
+
+    private void BtnTemplate1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnTemplate1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnTemplate1KeyPressed
+
+    private void DTPRegItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_DTPRegItemStateChanged
+
+    }//GEN-LAST:event_DTPRegItemStateChanged
+
+    private void DTPRegKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPRegKeyPressed
+
+    }//GEN-LAST:event_DTPRegKeyPressed
+
+    private void TglAsuhanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TglAsuhanKeyPressed
+        //    Valid.pindah(evt, Rencana, Informasi);
+    }//GEN-LAST:event_TglAsuhanKeyPressed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(() -> {
+            WhatsappKirimFonnte dialog = new WhatsappKirimFonnte(new javax.swing.JFrame(), true);
+            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    System.out.println("Jendela ditutup");
+                }
+            });
+            dialog.setVisible(true);
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private widget.Button BtnKeluar;
+    private widget.Button BtnKirim;
+    private widget.Button BtnTemplate;
+    private widget.Button BtnTemplate1;
+    private widget.Tanggal DTPReg;
+    private widget.PanelBiasa FormInput;
+    private javax.swing.JTextField NoHp;
+    private javax.swing.JTextField NoReg;
+    private widget.ScrollPane Scroll3;
+    private javax.swing.JTextField TDokter;
+    private javax.swing.JTextField TNoRM;
+    private javax.swing.JTextField TPasien;
+    private widget.TextArea TPesan;
+    private javax.swing.JTextField TPoli;
+    private widget.Tanggal TglAsuhan;
+    private widget.InternalFrame internalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private widget.Label label11;
+    // End of variables declaration//GEN-END:variables
+
+    private void isPsien() {
+//        Sequel.cariIsi("select pasien.nm_pasien from pasien where pasien.no_rkm_medis=? ",TPasien,TNoRM.getText());
+//        Sequel.cariIsi("select pasien.no_tlp from pasien where pasien.no_rkm_medis=? ",NoHp,TNoRM.getText());
+
+    }
+
+    public void setNoRm(String norm, String noreg, String poli, String dokter, Date tanggal) {
+        TNoRM.setText(norm);
+        NoReg.setText(noreg);
+        TPoli.setText(poli);
+        TDokter.setText(dokter);
+        DTPReg.setDate(tanggal);
+        Sequel.cariIsi("select pasien.nm_pasien from pasien where pasien.no_rkm_medis=? ", TPasien, TNoRM.getText());
+        Sequel.cariIsi("select pasien.no_tlp from pasien where pasien.no_rkm_medis=? ", NoHp, TNoRM.getText());
+        isPsien();
+//        Sequel.cariIsi("select catatan_pasien.catatan from catatan_pasien where catatan_pasien.no_rkm_medis=?",TCatatan,TNoRM.getText());       
+    }
+
+    public void setPesan(String dataTemplate) {
+        TPesan.setText(dataTemplate);
+        isPsien();
+//        Sequel.cariIsi("select catatan_pasien.catatan from catatan_pasien where catatan_pasien.no_rkm_medis=?",TCatatan,TNoRM.getText());       
+    }
+
+    public void isCek() {
+        BtnKirim.setEnabled(true);
+        BtnTemplate.setEnabled(true);
+        BtnTemplate.setEnabled(true);
+
+    }
+
+    private void KirimWaDelphi() {
+        Connection koneksiwa = koneksiDBWa.condb();
+        PreparedStatement ps = null;
+        
+        String target = NoHp.getText() + "|" + TPasien.getText() + "|" + TNoRM.getText() + "|" + NoReg.getText() + "|" + TPoli.getText() + "|" + TDokter.getText() + "|" + DTPReg.getSelectedItem();
+                String message = TPesan.getText();
+                String pesan = TPesan.getText();
+                String countryCode = "62"; // optional            
+                String tanggal = (String) DTPReg.getSelectedItem();
+                message = message.replace("{nama}", TPasien.getText())
+                        .replace("{rm}", TNoRM.getText())
+                        .replace("{antrian}", NoReg.getText())
+                        .replace("{poli}", TPoli.getText())
+                        .replace("{dokter}", TDokter.getText())
+                        .replace("{tanggal}", tanggal);
+
+                pesan = pesan.replace("{nama}", TPasien.getText())
+                        .replace("{rm}", TNoRM.getText())
+                        .replace("{antrian}", NoReg.getText())
+                        .replace("{poli}", TPoli.getText())
+                        .replace("{dokter}", TDokter.getText())
+                        .replace("{tanggal}", tanggal)
+                        .replace("*", "")
+                        .replace("_", "")
+                        .replace("{", "")
+                        .replace("}", "");
+
+                // Menggabungkan parameter ke dalam format yang sesuai untuk dikirimkan
+                String postData = message;
+
+
+        try {
+            String sql = "INSERT INTO wa_outbox (NOMOR, NOWA, PESAN, TANGGAL_JAM, STATUS, SOURCE, SENDER, SUCCESS, RESPONSE, REQUEST, TYPE, FILE) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            ps = koneksiwa.prepareStatement(sql);
+            ps.setLong(1, 0);  // NOMOR, jika AUTO_INCREMENT, bisa diubah atau dihilangkan sesuai kebutuhan
+            ps.setString(2, NoHp.getText() + "@c.us");  // NOWA
+            ps.setString(3, postData);          // PESAN
+            ps.setTimestamp(4, java.sql.Timestamp.valueOf(
+                    Valid.SetTgl(TglAsuhan.getSelectedItem().toString()) + " "
+                    + TglAsuhan.getSelectedItem().toString().substring(11, 19)));  // TANGGAL_JAM
+            ps.setString(5, "ANTRIAN");                 // STATUS
+            ps.setString(6, "KHANZA");                  // SOURCE
+            ps.setString(7, "NODEJS");                  // SENDER
+            ps.setString(8, "");                        // SUCCESS
+            ps.setString(9, "");                        // RESPONSE
+            ps.setString(10, "");                       // REQUEST
+            ps.setString(11, "TEXT");                   // TYPE
+            ps.setString(12, "");                       // FILE
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Notif : " + e);
+        } 
+     /*   finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (koneksiwa != null) {
+                    koneksiwa.close();
+                }
+            } catch (Exception ex) {
+                System.out.println("Error closing resources: " + ex);
+            }
+        }   */     
+        JOptionPane.showMessageDialog(null, "Berhasil Mengirim Pesan !!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+    }
+
+    private void KirimWaFonnte() {
+        if (NoHp.getText().trim().equals("") || NoHp.getText().trim().equals("")) {
+            Valid.textKosong(NoHp, "No.Rekam Medis");
+        } else if (TPesan.getText().trim().equals("")) {
+            Valid.textKosong(TPesan, "Isi Pesan Terlebih dahulu.. ");
+        } else {
+            try {
+                String url = "https://api.fonnte.com/send";
+                String TokenWA = koneksiDB.TOKENWA();
+
+                // Parameter yang akan dikirimkan
+                String target = NoHp.getText() + "|" + TPasien.getText() + "|" + TNoRM.getText() + "|" + NoReg.getText() + "|" + TPoli.getText() + "|" + TDokter.getText() + "|" + DTPReg.getSelectedItem();
+                String message = TPesan.getText();
+                String pesan = TPesan.getText();
+                String countryCode = "62"; // optional            
+                String tanggal = (String) DTPReg.getSelectedItem();
+                message = message.replace("{nama}", TPasien.getText())
+                        .replace("{rm}", TNoRM.getText())
+                        .replace("{antrian}", NoReg.getText())
+                        .replace("{poli}", TPoli.getText())
+                        .replace("{dokter}", TDokter.getText())
+                        .replace("{tanggal}", tanggal);
+
+                pesan = pesan.replace("{nama}", TPasien.getText())
+                        .replace("{rm}", TNoRM.getText())
+                        .replace("{antrian}", NoReg.getText())
+                        .replace("{poli}", TPoli.getText())
+                        .replace("{dokter}", TDokter.getText())
+                        .replace("{tanggal}", tanggal)
+                        .replace("*", "")
+                        .replace("_", "")
+                        .replace("{", "")
+                        .replace("}", "");
+
+                // Menggabungkan parameter ke dalam format yang sesuai untuk dikirimkan
+                String postData = "target=" + target + "&message=" + message + "&countryCode=" + countryCode;
+
+                // Membuat objek URL
+                URL obj = new URL(url);
+
+                // Membuka koneksi HttpURLConnection
+                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+                // Mengatur properti untuk koneksi
+                con.setRequestMethod("POST");
+                con.setRequestProperty("Authorization", TokenWA);
+                con.setDoOutput(true);
+
+                // Mengirim data
+                try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
+                    wr.write(postData.getBytes(StandardCharsets.UTF_8));
+                } catch (IOException ex) {
+                    Logger.getLogger(WhatsappKirimFonnte.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                // Menerima respon dari server
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
+                    String inputLine;
+                    StringBuilder response = new StringBuilder();
+
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+
+                    // Menampilkan respon
+                    System.out.println(response.toString());
+
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    // Mengonversi JSON String menjadi JsonNode
+                    JsonNode jsonNode = objectMapper.readTree(response.toString());
+
+                    // Menampilkan nilai JSON
+//        System.out.println("detail: " + jsonNode.get("detail").asText());
+//        System.out.println("id: " + jsonNode.get("id").get(0).asText());
+//        System.out.println("proses: " + jsonNode.get("process").asText());
+//        System.out.println("status: " + jsonNode.get("status").asText());
+//        System.out.println("target: " + jsonNode.get("target").get(0).asText());
+                    if ("false".equals(jsonNode.get("status").asText())) {
+                        //pesan error     
+                        JOptionPane.showMessageDialog(null, "Gagal mengirim, mohon cek koneksi Whatsapp Gateway !!", "Error", JOptionPane.ERROR_MESSAGE);
+
+                    } else if ("true".equals(jsonNode.get("status").asText())) {
+                        LocalDateTime now = LocalDateTime.now();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+                        // Mengonversi LocalDateTime ke String dengan format yang diinginkan
+                        String DateNow = now.format(formatter);
+                        Sequel.queryu("insert into wa_report values('" + jsonNode.get("id").get(0).asText() + "','" + TNoRM.getText() + "','" + NoHp.getText() + "','" + akses.getkode() + "','SIMRS Khanza','" + jsonNode.get("target").get(0).asText() + "','" + pesan + "','','" + jsonNode.get("status").asText() + "','','" + DateNow + "','" + DateNow + "')");
+                        //pesan sukses     
+                        JOptionPane.showMessageDialog(null, "Berhasil Mengirim Pesan !!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        //   BtnKeluarActionPerformed(evt);
+                    }
+
+                } catch (IOException ex) {
+                    Logger.getLogger(WhatsappKirimFonnte.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } catch (ProtocolException ex) {
+                Logger.getLogger(WhatsappKirimFonnte.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(WhatsappKirimFonnte.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }
+
+}

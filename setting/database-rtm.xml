@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>KhanzaHMS</comment> 
+	<entry key="HOST">5k7+C7EnUw9nUv2Nix+DBA==</entry>
+    <entry key="DATABASE">eG1meHQZNbx/wgc4kSP9dg==</entry>
+    <entry key="PORT">nioxtijcpDaKSUiUiP5FAg==</entry>
+    <entry key="USER">kMR3WfAwUK6MbhCyydxa0g==</entry>
+    <entry key="PAS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="CARICEPAT">nonaktif</entry>
+    <entry key="HOSTHYBRIDWEB">yTSpC7hRSPkzcQmlFhohVA==</entry>
+    <entry key="USERHYBRIDWEB">nmXqCKzrz9i8GTZlq7JruQ==</entry>
+    <entry key="PASHYBRIDWEB">AsJ/0/gCnYnD+gK4fw9uKA==</entry>
+    <entry key="HYBRIDWEB">webapps24-05-23</entry>
+    <entry key="PORTWEB">80</entry>
+    <entry key="AKTIFKANWARNARALAN">yes</entry>
+    <entry key="ANTRIAN">player</entry>
+    <entry key="LOKETANTRIAN">1</entry>
+    <entry key="ALARMAPOTEK">yes</entry>
+    <entry key="RESEPRAJALKEPLAN">yes</entry>
+    <entry key="FORMALARMAPOTEK">ralan + ranap</entry>
+    <entry key="STOKKOSONGRESEP">no</entry>
+    <entry key="HPPFARMASI">dasar</entry>
+    <entry key="HPPTOKO">dasar</entry>
+    <entry key="ALARMLAB">yes</entry>
+    <entry key="FORMALARMLAB">ralan + ranap</entry>
+    <entry key="ALARMRADIOLOGI">yes</entry>
+    <entry key="FORMALARMRADIOLOGI">ralan + ranap</entry>
+    <entry key="ALARMRSISRUTE">yes</entry>
+    <entry key="ALARMBOOKINGPERIKSA">yes</entry>
+    <entry key="ALARMPENGADUANPASIEN">yes</entry>
+    <entry key="ALARMPERMINTAANRANAP">yes</entry>
+    <entry key="MENUTRANSPARAN">no</entry>
+    <entry key="URLAPIBPJS">https://apijkn.bpjs-kesehatan.go.id/vclaim-rest</entry>
+    <entry key="ADDANTRIANAPIMOBILEJKN">yes</entry>
+    <entry key="SECRETKEYAPIBPJS">Cp3XeWrEQLw6C3dHmfbAEQ==</entry>
+    <entry key="CONSIDAPIBPJS">9EgOeSq9D2FvM94YqIeRLg==</entry>
+    <entry key="USERKEYAPIBPJS">35oEtuIMTqKnRY3E9ndRabMTOZR6ZLGmYe2R6gFC8ypky+g4uYM9FrP7ECh1MUlV</entry>-
+    <entry key="DIAGNOSARUJUKANMASUKAPIBPJS">no</entry>
+    <entry key="JADIKANBOOKINGSURATKONTROLAPIBPJS">no</entry>
+    <entry key="URLAPIAPLICARE">https://new-api.bpjs-kesehatan.go.id/aplicaresws</entry>
+    <entry key="SECRETKEYAPIAPLICARE">Cp3XeWrEQLw6C3dHmfbAEQ==</entry>
+    <entry key="CONSIDAPIAPLICARE">9EgOeSq9D2FvM94YqIeRLg==</entry>
+    <entry key="USERKEYAPIAPLICARE">35oEtuIMTqKnRY3E9ndRabMTOZR6ZLGmYe2R6gFC8ypky+g4uYM9FrP7ECh1MUlV</entry>
+    <entry key="URLAPIMOBILEJKN">https://apijkn.bpjs-kesehatan.go.id/antreanrs</entry>
+    <entry key="SECRETKEYAPIMOBILEJKN">Cp3XeWrEQLw6C3dHmfbAEQ==</entry>
+    <entry key="CONSIDAPIMOBILEJKN">9EgOeSq9D2FvM94YqIeRLg==</entry>
+    <entry key="USERKEYAPIMOBILEJKN">B1V5ZlJmmYR8xZ3Pq3Ot0hWyLUw4hbYcZkMII1DbaS6FBnWdvB+X6IWvneKhBB1n</entry>
+
+    <entry key="URLAPIAPOTEKBPJS">https://dev-soa.bpjs-kesehatan.go.id/apotek-rest</entry>
+    <entry key="SECRETKEYAPIAPOTEKBPJS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="CONSIDAPIAPOTEKBPJS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="USERKEYAPIAPOTEKBPJS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+
+    <entry key="URLAPIPCARE">http://api.bpjs-kesehatan.go.id/pcare-rest-v3.0/</entry>
+    <entry key="SECRETKEYAPIPCARE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="CONSIDAPIPCARE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="USERKEYAPIPCARE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="PASSPCARE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="USERPCARE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="DIVREGPCARE">REGIONAL V-JAWA TENGAH</entry>
+    <entry key="KACABPCARE">SURAKARTA</entry>
+    <entry key="URLAPISISRUTE">https://api.sisrute.kemkes.go.id</entry>
+    <entry key="IDSISRUTE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="PASSSISRUTE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="URLAPISIRS">https://sirs.kemkes.go.id/fo/index.php/Fasyankes</entry>
+    <entry key="IDSIRS">jhPSu1xlQkh+stLFrcin5w==</entry>
+    <entry key="PASSSIRS">BYptJvsq544HinWKjX8VTA==</entry>
+    <entry key="URLAPISITT">http://sirs.yankes.kemkes.go.id/sirsservice/sitbtraining/sitb/senddata</entry>
+    <entry key="IDSITT">Fm2U09DVwzqY2V8sl5jUCA==</entry>
+    <entry key="PASSSITT">ri7lfclUM11skv5F+NuUUg==</entry>
+    <entry key="KABUPATENSITT">12345</entry>
+    <entry key="URLAPICORONA">http://sirs.kemkes.go.id/fo/index.php</entry>
+    <entry key="IDCORONA">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="PASSCORONA">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+
+
+</properties>
